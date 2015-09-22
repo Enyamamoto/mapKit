@@ -21,6 +21,10 @@
     //初期化
     MKMapView *mapView = [[MKMapView alloc] init];
     
+    //デリゲートを設定
+    //mapviewがもってるアクションをviewcontrollerのなかで感じることができる
+    mapView.delegate = self;
+    
     //大きさ、位置を決定
     //iphone4サイズ
     //20にすると上がいい感じに表示される
@@ -100,6 +104,28 @@
     //これは常に最後.じゃないと表示されない
     [self.view addSubview:mapView];
     
+}
+
+//ピンを表示する際に発動されるデリゲートメソッド
+//ピンが降ってくるアニメーションの設定
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    static NSString *pinIdentifier = @"PinAnnotationID";
+    
+    //ピン情報の再利用
+    //ピンは同時じゃなくプログラミング書かれている順番に書かれている
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+    
+    if (pinView == nil) {
+        //初期化
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+        
+        //落ちるアニメーション
+        pinView.animatesDrop = YES;
+    
+    }
+    
+    //voidじゃない場合はreturn必須
+    return pinView;
 }
 
 - (void)didReceiveMemoryWarning {
