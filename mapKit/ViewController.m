@@ -119,9 +119,20 @@
         //初期化
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
         
-        //落ちるアニメーション
-        pinView.animatesDrop = YES;
+        //個別でアニメーションつける
+        //もし名前がアヤラだったらおちる
+        if ([annotation.title isEqualToString:@"Ayala"]) {
+            
+            //落ちるアニメーション
+            pinView.animatesDrop = YES;
+        }else{
+        
+        //落ちないアニメーション
+        pinView.animatesDrop = NO;
     
+    }
+        //吹き出しの設定
+        pinView.canShowCallout = YES;
     }
     
     //voidじゃない場合はreturn必須
