@@ -60,14 +60,14 @@
     //緯度経度はアヤラ
     MKPointAnnotation *pin = [[MKPointAnnotation alloc] init];
     pin.coordinate = CLLocationCoordinate2DMake(10.317347, 123.905759);
-    pin.title = @"アヤラ";
+    pin.title = @"Ayala";
     pin.subtitle = @"セブて１番大きい";
     [mapView addAnnotation:pin];
     
     //もうひとつピンSM
     MKPointAnnotation *pin2 = [[MKPointAnnotation alloc] init];
     pin2.coordinate = CLLocationCoordinate2DMake(10.311715, 123.918332);
-    pin2.title = @"SMモール";
+    pin2.title = @"Shumart";
     pin2.subtitle = @"セブで２番目に大きい";
     
     [mapView addAnnotation:pin2];
